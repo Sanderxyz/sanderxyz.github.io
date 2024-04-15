@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sanderxyz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+<link rel="icon" href="assets/pfp.png" type="image/png"></head>
+
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <div id="profile">
+        <div id="profile_img" style="background: url(assets/pfp.png) center;"></div>
+        <div id="username"><span style="display:block;">Sander</span><a href="https://github.com/sanderxyz">@sanderxyz</a></div>
+        <div id="userbio" style="display: block;">Junior Software Developer</div>
+        <div id="about">
+            <span style="display:none;"><i class="fas fa-envelope"></i> &nbsp; null</span>
+            <span style="display:block;"><i class="fas fa-link"></i> &nbsp; <a href="https://sanderxyz.nl">sanderxyz.nl</a></span>
+            <span style="display:block;"><i class="fas fa-map-marker-alt"></i> &nbsp;&nbsp; The Netherlands</span>
+            <span style="display:none;"><i class="fas fa-user-tie"></i> &nbsp;&nbsp; </span>
+        </div>
+    </div>
+    <div id="display">
+        <div id="work">
+            <h1>Socials</h1>
+            <div class="projects" id="work_section">
+                <a href="https://discord.com/users/556766560170016769" target="_blank">
+                    <section>
+                        <div class="section_title">My Discord Account</div>
+                        <div class="about_section">
+                            <span style="display:block;"></span>
+                        </div>
+                        <div class="bottom_section">
+                            <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Discord</span>
+                        </div>
+                    </section>
+                </a>
+                <a href="https://youtube.com/@sanderxyz" target="_blank">
+                    <section>
+                        <div class="section_title">My Youtube Account</div>
+                        <div class="about_section">
+                        </div>
+                        <div class="bottom_section">
+                            <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Youtube</span>
+                        </div>
+                    </section>
+                </a>
+                <a href="https://tiktok.com/@sander.vfx" target="_blank">
+                    <section>
+                        <div class="section_title">My Tiktok Account</div>
+                        <div class="about_section">
+                        </div>
+                        <div class="bottom_section">
+                            <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Tiktok</span>
+                        </div>
+                    </section>
+                </a>
+            </div>
+        </div>
+        <div id="projects">
+            <h1>Projects</h1>
+            <div class="projects" id="servers_section">
+                <a href="https://github.com/sanderxyz" target="_blank">
+                    <section>
+                        <div class="section_title">Github</div>
+                        <div class="about_section">
+                        </div>
+                        <div class="bottom_section">
+                            <span style="display:inline-block;"><i class="fas fa-code"></i>&nbsp; Github</span>
+                        </div>
+                    </section>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        setTimeout(function () {
+            document.getElementById("loading").classList.add("animated");
+            document.getElementById("loading").classList.add("fadeOut");
+            setTimeout(function () {
+                document.getElementById("loading").classList.remove("animated");
+                document.getElementById("loading").classList.remove("fadeOut");
+                document.getElementById("loading").style.display = "none";
+            }, 800);
+        }, 1500);
+        $.getJSON("blog.json", function (blog) {
+            blog = blog || [];
+            if (blog.length == 0) {
+                return document.getElementById("blog_section").style.display = "none";
+            }
+            for (var i = 0; i < blog.length; i++) {
+                $("#blogs").append(`
+            <a href="./blog/${blog[i].url_title}/" target="_blank">
+                <section>
+                    <img src="${blog[i].top_image}">
+                    <div class="blog_container">
+                        <div class="section_title">${blog[i].title}</div>
+                        <div class="about_section">
+                            ${blog[i].sub_title}
+                        </div>
+                    </div>
+                </section>
+            </a>
+            `);
+            }
+        }).fail(function () {
+            return document.getElementById("blog_section").style.display = "none";
+        });
+    </script>
+
+    <script type="text/javascript">
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js');
+            });
+        }
+    </script>
+
+
+</body></html>
